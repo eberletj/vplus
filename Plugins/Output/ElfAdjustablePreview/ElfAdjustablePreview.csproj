@@ -1,0 +1,986 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6B7D581E-7AF2-44E1-B421-E8FE38DCD846}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ElfAdjustablePreview</RootNamespace>
+    <AssemblyName>ElfAdjustablePreview</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Build\Plugins\Output\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Docking">
+      <HintPath>..\..\..\externalLibs\Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\ColorDropDown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ColorDropDown.Designer.cs">
+      <DependentUpon>ColorDropDown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColorGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ColorGrid.Designer.cs">
+      <DependentUpon>ColorGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColorManager.cs" />
+    <Compile Include="Controls\ColorPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ColorPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ColorPicker.Designer.cs">
+      <DependentUpon>ColorPicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColorWheel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ColorWheel.Designer.cs">
+      <DependentUpon>ColorWheel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DropDownControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DropDownControl.Designer.cs">
+      <DependentUpon>DropDownControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HSLSlider.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\HSLSlider.Designer.cs">
+      <DependentUpon>HSLSlider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImageDropDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ImageListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NamedColor.cs" />
+    <Compile Include="Controls\SelectColorDialog.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SelectColorDialog.Designer.cs">
+      <DependentUpon>SelectColorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SelectColorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\SelectColorForm.Designer.cs">
+      <DependentUpon>SelectColorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\App_Data\AssemblyInfo.cs" />
+    <Compile Include="Core\Channels\ElfChannel.cs" />
+    <Compile Include="Core\Channels\ElfImageStampChannel.cs" />
+    <Compile Include="Core\Channels\ElfRawChannel.cs" />
+    <Compile Include="Core\Controllers\ChannelController.cs" />
+    <Compile Include="Core\Controllers\ChannelGroupController.cs" />
+    <Compile Include="Core\Controllers\KeyboardController.cs" />
+    <Compile Include="Core\Controllers\ProfileController.cs" />
+    <Compile Include="Core\Controllers\ShuffleController.cs" />
+    <Compile Include="Core\Controllers\UndoController.cs" />
+    <Compile Include="Core\Controllers\Workshop.cs" />
+    <Compile Include="Core\Core\Background.cs" />
+    <Compile Include="Core\Core\ChannelGroup.cs" />
+    <Compile Include="Core\Core\ChannelMover.cs" />
+    <Compile Include="Core\Core\Clipboard.cs" />
+    <Compile Include="Core\Core\ElfBase.cs" />
+    <Compile Include="Core\Core\Mask.cs" />
+    <Compile Include="Core\Core\MaskData.cs" />
+    <Compile Include="Core\Core\Scaling.cs" />
+    <Compile Include="Core\Core\Shuffle.cs" />
+    <Compile Include="Core\Core\UISettings.cs" />
+    <Compile Include="Core\Core\UndoData.cs" />
+    <Compile Include="Core\Forms\BackgroundSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\BackgroundSettings.Designer.cs">
+      <DependentUpon>BackgroundSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\CanvasWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\CanvasWindow.Designer.cs">
+      <DependentUpon>CanvasWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\ChangeLatticeSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\ChangeLatticeSize.Designer.cs">
+      <DependentUpon>ChangeLatticeSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\ChannelExplorerTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\ChannelExplorerTree.designer.cs">
+      <DependentUpon>ChannelExplorerTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\ChannelProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\ChannelProperties.Designer.cs">
+      <DependentUpon>ChannelProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\ConfigureKeys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\ConfigureKeys.Designer.cs">
+      <DependentUpon>ConfigureKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\EditChannel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\EditChannel.Designer.cs">
+      <DependentUpon>EditChannel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\Editor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\Editor.designer.cs">
+      <DependentUpon>Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\Editor_MenuClicks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\EditSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\EditSettings.Designer.cs">
+      <DependentUpon>EditSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\EditShuffle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\EditShuffle.Designer.cs">
+      <DependentUpon>EditShuffle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\ImportFromProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\ImportFromProfile.Designer.cs">
+      <DependentUpon>ImportFromProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\MappingPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\MappingPreview.Designer.cs">
+      <DependentUpon>MappingPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\NewProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\NewProfile.Designer.cs">
+      <DependentUpon>NewProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\ProfileSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\ProfileSplash.Designer.cs">
+      <DependentUpon>ProfileSplash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\SetInactiveAlpha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\SetInactiveAlpha.Designer.cs">
+      <DependentUpon>SetInactiveAlpha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\ViewBufferPane.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\ViewBufferPane.Designer.cs">
+      <DependentUpon>ViewBufferPane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Interfaces\IBase.cs" />
+    <Compile Include="Core\Interfaces\IItem.cs" />
+    <Compile Include="Core\Interfaces\IProfile.cs" />
+    <Compile Include="Core\Interfaces\ISettings.cs" />
+    <Compile Include="Core\Interfaces\ITool.cs" />
+    <Compile Include="Core\Interfaces\IToolGroup.cs" />
+    <Compile Include="Core\PlugIn\PlugInController.cs" />
+    <Compile Include="Core\PlugIn\PlugInProfile.cs" />
+    <Compile Include="Core\PlugIn\PlugInTool.cs" />
+    <Compile Include="Core\PlugIn\PlugInToolGroup.cs" />
+    <Compile Include="Core\Profiles\BaseProfile.cs" />
+    <Compile Include="Core\UserControls\MultiSelectTreeview.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\UserControls\PlugInToolStripButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\UserControls\ToolStripMenuItemWithKeys.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\UserControls\ToolWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\UserControls\ToolWindow.designer.cs">
+      <DependentUpon>ToolWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Util\ClassAttributes.cs" />
+    <Compile Include="Core\Util\Clipper.cs" />
+    <Compile Include="Core\Util\Constants.cs" />
+    <Compile Include="Core\Util\CustomCursors.cs" />
+    <Compile Include="Core\Util\DrawingControl.cs" />
+    <Compile Include="Core\Util\ElfDisposable.cs" />
+    <Compile Include="Core\Util\Enumerators.cs" />
+    <Compile Include="Core\Util\EnumHelper.cs" />
+    <Compile Include="Core\Util\Enums.cs" />
+    <Compile Include="Core\Util\EventArgs.cs" />
+    <Compile Include="Core\Util\EventHandlers.cs" />
+    <Compile Include="Core\Util\ImageHandler.cs" />
+    <Compile Include="Core\Util\ListBoxUtil.cs" />
+    <Compile Include="Core\Util\LockBitmap.cs" />
+    <Compile Include="Core\Util\Mapping.cs" />
+    <Compile Include="Core\Util\MRU.cs" />
+    <Compile Include="Core\Util\MultiKeyGesture.cs" />
+    <Compile Include="Core\Util\QColorMatrix.cs" />
+    <Compile Include="Core\Util\Registry.cs" />
+    <Compile Include="Core\Util\Settings.cs" />
+    <Compile Include="Core\Util\Static.cs" />
+    <Compile Include="Core\Util\Stopwatch.cs" />
+    <Compile Include="Core\Util\XmlHelper.cs" />
+    <Compile Include="Core\XmlSerializers\XmlColor.cs" />
+    <Compile Include="Core\XmlSerializers\XmlGraphicsPath.cs" />
+    <Compile Include="PlugIn.cs" />
+    <Compile Include="PreviewDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PreviewDialog.Designer.cs">
+      <DependentUpon>PreviewDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.cs" />
+    <Compile Include="Profiles\BaseVixen.cs" />
+    <Compile Include="Profiles\GeneralPlugIn.cs" />
+    <Compile Include="Profiles\PlaybackProfile.cs" />
+    <Compile Include="Profiles\Vixen21x.cs" />
+    <Compile Include="Profiles\Vixen25x.cs" />
+    <Compile Include="Profiles\VixenPlus.cs" />
+    <Compile Include="Profiles\VixenProfileChannel.cs" />
+    <Compile Include="Profiles\VixenSequencerChannel.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\BaseTool.cs" />
+    <Compile Include="Tools\ButtonImages.cs" />
+    <Compile Include="Tools\MaskBase.cs" />
+    <Compile Include="Tools\MultiChannelBase.cs" />
+    <Compile Include="Tools\Nib.cs" />
+    <Compile Include="Tools\ShapeBase.cs" />
+    <Compile Include="Tools\ToolGroups\BaseToolGroup.cs" />
+    <Compile Include="Tools\ToolGroups\ToolGroup_Mask.cs" />
+    <Compile Include="Tools\ToolGroups\ToolGroup_MCL.cs" />
+    <Compile Include="Tools\ToolGroups\ToolGroup_Shapes.cs" />
+    <Compile Include="Tools\Tools\Crop.cs" />
+    <Compile Include="Tools\Tools\Ellipse.cs" />
+    <Compile Include="Tools\Tools\Eraser.cs" />
+    <Compile Include="Tools\Tools\Floodfill.cs" />
+    <Compile Include="Tools\Tools\Icicles.cs" />
+    <Compile Include="Tools\Tools\ImageStamp.cs" />
+    <Compile Include="Tools\Tools\Line.cs" />
+    <Compile Include="Tools\Tools\Mask_Brush.cs" />
+    <Compile Include="Tools\Tools\Mask_Ellipse.cs" />
+    <Compile Include="Tools\Tools\Mask_Freehand.cs" />
+    <Compile Include="Tools\Tools\Mask_Lasso.cs" />
+    <Compile Include="Tools\Tools\Mask_Rectangle.cs" />
+    <Compile Include="Tools\Tools\MegaTree.cs" />
+    <Compile Include="Tools\Tools\MoveChannel.cs" />
+    <Compile Include="Tools\Tools\MultiChannelLine.cs" />
+    <Compile Include="Tools\Tools\Paintbrush.cs" />
+    <Compile Include="Tools\Tools\Polygon.cs" />
+    <Compile Include="Tools\Tools\Rectangle.cs" />
+    <Compile Include="Tools\Tools\SingingFace.cs" />
+    <Compile Include="Tools\Tools\Spray.cs" />
+    <Compile Include="Tools\Tools\Text.cs" />
+    <Compile Include="Tools\Tools\ToolStripForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\Tools\Tools_ToolStripContainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\Tools\Tools_ToolStripContainer.Designer.cs">
+      <DependentUpon>Tools_ToolStripContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\Tools\Zoom.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Vixen\VixenPlus.csproj">
+      <Project>{FA99E3F3-4783-485F-A37E-0E24F823E5AE}</Project>
+      <Name>VixenPlus</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\ColorDropDown.resx">
+      <DependentUpon>ColorDropDown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ColorGrid.resx">
+      <DependentUpon>ColorGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ColorPicker.resx">
+      <DependentUpon>ColorPicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DropDownControl.resx">
+      <DependentUpon>DropDownControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SelectColorForm.resx">
+      <DependentUpon>SelectColorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\BackgroundSettings.resx">
+      <DependentUpon>BackgroundSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\CanvasWindow.resx">
+      <DependentUpon>CanvasWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\ChangeLatticeSize.resx">
+      <DependentUpon>ChangeLatticeSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\ChannelExplorerTree.resx">
+      <DependentUpon>ChannelExplorerTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\ChannelProperties.resx">
+      <DependentUpon>ChannelProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\ConfigureKeys.resx">
+      <DependentUpon>ConfigureKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\EditChannel.resx">
+      <DependentUpon>EditChannel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\Editor.resx">
+      <DependentUpon>Editor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\EditSettings.resx">
+      <DependentUpon>EditSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\EditShuffle.resx">
+      <DependentUpon>EditShuffle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\ImportFromProfile.resx">
+      <DependentUpon>ImportFromProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\MappingPreview.resx">
+      <DependentUpon>MappingPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\NewProfile.resx">
+      <DependentUpon>NewProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\ProfileSplash.resx">
+      <DependentUpon>ProfileSplash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\SetInactiveAlpha.resx">
+      <DependentUpon>SetInactiveAlpha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\ViewBufferPane.resx">
+      <DependentUpon>ViewBufferPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PreviewDialog.resx">
+      <DependentUpon>PreviewDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\Tools\Tools_ToolStripContainer.resx">
+      <DependentUpon>Tools_ToolStripContainer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\App_Data\ElfClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Core\Resources\anchor_bottomLeft.png" />
+    <Content Include="Core\Resources\anchor_bottomRight.png" />
+    <Content Include="Core\Resources\anchor_topleft.png" />
+    <Content Include="Core\Resources\anchor_topRight.png" />
+    <Content Include="Core\Resources\Annotations\annotation_1to1.png" />
+    <Content Include="Core\Resources\Annotations\annotation_add.png" />
+    <Content Include="Core\Resources\Annotations\annotation_alert.png" />
+    <Content Include="Core\Resources\Annotations\annotation_as.png" />
+    <Content Include="Core\Resources\Annotations\annotation_blocked.png" />
+    <Content Include="Core\Resources\Annotations\annotation_check.png" />
+    <Content Include="Core\Resources\Annotations\annotation_clear.png" />
+    <Content Include="Core\Resources\Annotations\annotation_clear2.png" />
+    <Content Include="Core\Resources\Annotations\annotation_close.png" />
+    <Content Include="Core\Resources\Annotations\annotation_complete.png" />
+    <Content Include="Core\Resources\Annotations\annotation_create.png" />
+    <Content Include="Core\Resources\Annotations\annotation_delete.png" />
+    <Content Include="Core\Resources\Annotations\annotation_down.png" />
+    <Content Include="Core\Resources\Annotations\annotation_edit.png" />
+    <Content Include="Core\Resources\Annotations\annotation_error.png" />
+    <Content Include="Core\Resources\Annotations\annotation_exclude.png" />
+    <Content Include="Core\Resources\Annotations\annotation_export.png" />
+    <Content Include="Core\Resources\Annotations\annotation_find.png" />
+    <Content Include="Core\Resources\Annotations\annotation_flyout.png" />
+    <Content Include="Core\Resources\Annotations\annotation_grid.png" />
+    <Content Include="Core\Resources\Annotations\annotation_help.png" />
+    <Content Include="Core\Resources\Annotations\annotation_image.png" />
+    <Content Include="Core\Resources\Annotations\annotation_import.png" />
+    <Content Include="Core\Resources\Annotations\annotation_include.png" />
+    <Content Include="Core\Resources\Annotations\annotation_info.png" />
+    <Content Include="Core\Resources\Annotations\annotation_invisible.png" />
+    <Content Include="Core\Resources\Annotations\annotation_left.png" />
+    <Content Include="Core\Resources\Annotations\annotation_locked.png" />
+    <Content Include="Core\Resources\Annotations\annotation_monitor.png" />
+    <Content Include="Core\Resources\Annotations\annotation_new.png" />
+    <Content Include="Core\Resources\Annotations\annotation_not.png" />
+    <Content Include="Core\Resources\Annotations\annotation_open.png" />
+    <Content Include="Core\Resources\Annotations\annotation_paint.png" />
+    <Content Include="Core\Resources\Annotations\annotation_pause.png" />
+    <Content Include="Core\Resources\Annotations\annotation_play.png" />
+    <Content Include="Core\Resources\Annotations\annotation_playround.png" />
+    <Content Include="Core\Resources\Annotations\annotation_plusone.png" />
+    <Content Include="Core\Resources\Annotations\annotation_redo.png" />
+    <Content Include="Core\Resources\Annotations\annotation_refresh.png" />
+    <Content Include="Core\Resources\Annotations\annotation_remove.png" />
+    <Content Include="Core\Resources\Annotations\annotation_required.png" />
+    <Content Include="Core\Resources\Annotations\annotation_right.png" />
+    <Content Include="Core\Resources\Annotations\annotation_save.png" />
+    <Content Include="Core\Resources\Annotations\annotation_security_alert.png" />
+    <Content Include="Core\Resources\Annotations\annotation_security_bad.png" />
+    <Content Include="Core\Resources\Annotations\annotation_security_good.png" />
+    <Content Include="Core\Resources\Annotations\annotation_shortcut.png" />
+    <Content Include="Core\Resources\Annotations\annotation_sort_ascending.png" />
+    <Content Include="Core\Resources\Annotations\annotation_sort_descending.png" />
+    <Content Include="Core\Resources\Annotations\annotation_star.png" />
+    <Content Include="Core\Resources\Annotations\annotation_stop.png" />
+    <Content Include="Core\Resources\Annotations\annotation_trash.png" />
+    <Content Include="Core\Resources\Annotations\annotation_undo.png" />
+    <Content Include="Core\Resources\Annotations\annotation_up.png" />
+    <Content Include="Core\Resources\Annotations\annotation_vector.png" />
+    <Content Include="Core\Resources\Annotations\annotation_visible.png" />
+    <Content Include="Core\Resources\Annotations\annotation_warning.png" />
+    <Content Include="Core\Resources\background.png" />
+    <Content Include="Core\Resources\back_one.png" />
+    <Content Include="Core\Resources\cancel.png" />
+    <Content Include="Core\Resources\CellSize\pixel_1.png" />
+    <Content Include="Core\Resources\CellSize\pixel_10.png" />
+    <Content Include="Core\Resources\CellSize\pixel_2.png" />
+    <Content Include="Core\Resources\CellSize\pixel_3.png" />
+    <Content Include="Core\Resources\CellSize\pixel_4.png" />
+    <Content Include="Core\Resources\CellSize\pixel_5.png" />
+    <Content Include="Core\Resources\CellSize\pixel_6.png" />
+    <Content Include="Core\Resources\CellSize\pixel_7.png" />
+    <Content Include="Core\Resources\CellSize\pixel_8.png" />
+    <Content Include="Core\Resources\CellSize\pixel_9.png" />
+    <Content Include="Core\Resources\channel.png" />
+    <Content Include="Core\Resources\channels.png" />
+    <Content Include="Core\Resources\channel_small.png" />
+    <Content Include="Core\Resources\channel_to_background.png" />
+    <Content Include="Core\Resources\check.png" />
+    <Content Include="Core\Resources\clearchannel.png" />
+    <Content Include="Core\Resources\copy.png" />
+    <Content Include="Core\Resources\cut.png" />
+    <Content Include="Core\Resources\down.png" />
+    <Content Include="Core\Resources\down_small.png" />
+    <Content Include="Core\Resources\exit.png" />
+    <Content Include="Core\Resources\fillMode_center.png" />
+    <Content Include="Core\Resources\fillMode_fill.png" />
+    <Content Include="Core\Resources\fillMode_fit.png" />
+    <Content Include="Core\Resources\fillMode_stretch.png" />
+    <Content Include="Core\Resources\fillMode_tile.png" />
+    <Content Include="Core\Resources\forward_one.png" />
+    <Content Include="Core\Resources\grid.png" />
+    <Content Include="Core\Resources\group.png" />
+    <Content Include="Core\Resources\Icon Resources\preview.png" />
+    <Content Include="Core\Resources\Icon Resources\preview_32.png" />
+    <Content Include="Core\Resources\Icon Resources\preview_48.png" />
+    <Content Include="Core\Resources\Icon Resources\zapper16.png" />
+    <Content Include="Core\Resources\Icon Resources\zapper32.png" />
+    <Content Include="Core\Resources\Icon Resources\zapper48.png" />
+    <Content Include="Core\Resources\Icons\AdjustablePreview.ico" />
+    <Content Include="Core\Resources\Icons\background.ico" />
+    <Content Include="Core\Resources\Icons\channel.ico" />
+    <Content Include="Core\Resources\Icons\color.ico" />
+    <Content Include="Core\Resources\Icons\ElfIcon.ico" />
+    <Content Include="Core\Resources\Icons\import_profile.ico" />
+    <Content Include="Core\Resources\Icons\key.ico" />
+    <Content Include="Core\Resources\Icons\keyboard.ico" />
+    <Content Include="Core\Resources\Icons\keyboard2.ico" />
+    <Content Include="Core\Resources\Icons\map.ico" />
+    <Content Include="Core\Resources\Icons\new_profile.ico" />
+    <Content Include="Core\Resources\Icons\preview.ico" />
+    <Content Include="Core\Resources\Icons\preview_32.ico" />
+    <Content Include="Core\Resources\Icons\preview_48.ico" />
+    <Content Include="Core\Resources\Icons\profile.ico" />
+    <Content Include="Core\Resources\Icons\resize_lattice.ico" />
+    <Content Include="Core\Resources\Icons\setbrightness.ico" />
+    <Content Include="Core\Resources\Icons\settings.ico" />
+    <Content Include="Core\Resources\Icons\set_canvas.ico" />
+    <Content Include="Core\Resources\Icons\shuffle.ico" />
+    <Content Include="Core\Resources\Icons\sort_order.ico" />
+    <Content Include="Core\Resources\Icons\transparency.ico" />
+    <Content Include="Core\Resources\Icons\Vixen3.png" />
+    <Content Include="Core\Resources\Icons\zapper.ico" />
+    <Content Include="Core\Resources\Icons\zapper16.ico" />
+    <Content Include="Core\Resources\Icons\zapper32.ico" />
+    <Content Include="Core\Resources\Icons\zapper48.ico" />
+    <Content Include="Core\Resources\image-import.png" />
+    <Content Include="Core\Resources\image.png" />
+    <Content Include="Core\Resources\keyboard.png" />
+    <Content Include="Core\Resources\lattice.png" />
+    <Content Include="Core\Resources\left.png" />
+    <Content Include="Core\Resources\left_small.png" />
+    <Content Include="Core\Resources\lock.png" />
+    <Content Include="Core\Resources\map.png" />
+    <Content Include="Core\Resources\newchannel.png" />
+    <Content Include="Core\Resources\newprofile.png" />
+    <Content Include="Core\Resources\newshuffle.png" />
+    <Content Include="Core\Resources\open.png" />
+    <Content Include="Core\Resources\palette.png" />
+    <Content Include="Core\Resources\paste.png" />
+    <Content Include="Core\Resources\profile.png" />
+    <Content Include="Core\Resources\properties.png" />
+    <Content Include="Core\Resources\recent.png" />
+    <Content Include="Core\Resources\redo.png" />
+    <Content Include="Core\Resources\rename.png" />
+    <Content Include="Core\Resources\reorder.png" />
+    <Content Include="Core\Resources\resize_lattice.png" />
+    <Content Include="Core\Resources\right.png" />
+    <Content Include="Core\Resources\right_small.png" />
+    <Content Include="Core\Resources\ruler.png" />
+    <Content Include="Core\Resources\sample_swatch.png" />
+    <Content Include="Core\Resources\save.png" />
+    <Content Include="Core\Resources\settings.png" />
+    <Content Include="Core\Resources\shuffle.png" />
+    <Content Include="Core\Resources\Splash\PreviewSplash.png" />
+    <Content Include="Core\Resources\Splash\ProfileEditorSplash.png" />
+    <Content Include="Core\Resources\Style Images\flake1.png" />
+    <Content Include="Core\Resources\Style Images\flake2.png" />
+    <Content Include="Core\Resources\Style Images\flake3.png" />
+    <Content Include="Core\Resources\Style Images\flake4.png" />
+    <Content Include="Core\Resources\toggle_guides.png" />
+    <Content Include="Core\Resources\to_back.png" />
+    <Content Include="Core\Resources\to_bottom.png" />
+    <Content Include="Core\Resources\to_front.png" />
+    <Content Include="Core\Resources\to_top.png" />
+    <Content Include="Core\Resources\transparency.png" />
+    <Content Include="Core\Resources\undefined.png" />
+    <Content Include="Core\Resources\undo.png" />
+    <Content Include="Core\Resources\ungroup.png" />
+    <Content Include="Core\Resources\up.png" />
+    <Content Include="Core\Resources\update.png" />
+    <Content Include="Core\Resources\up_small.png" />
+    <Content Include="Core\Resources\visible.png" />
+    <Content Include="Resources\add_small.png" />
+    <None Include="Resources\visible.png" />
+    <None Include="Resources\vixen3x.png" />
+    <None Include="Resources\vixen2x.png" />
+    <None Include="Resources\zoom_plus.png" />
+    <None Include="Resources\zoom_minus.png" />
+    <None Include="Resources\zoom_100.png" />
+    <None Include="Resources\warning.png" />
+    <None Include="Resources\vixenplus.png" />
+    <None Include="Resources\anticlockwise.png" />
+    <None Include="Resources\anticlockwise_selected.png" />
+    <None Include="Resources\arch.png" />
+    <None Include="Resources\arch_left2right.png" />
+    <None Include="Resources\arch_left2right_selected.png" />
+    <None Include="Resources\arch_right2left.png" />
+    <None Include="Resources\arch_right2left_selected.png" />
+    <None Include="Resources\bold.png" />
+    <None Include="Resources\bold_selected.png" />
+    <None Include="Resources\anchor_bottomLeft.png" />
+    <None Include="Resources\anchor_bottomRight.png" />
+    <None Include="Resources\anchor_topleft.png" />
+    <None Include="Resources\anchor_topRight.png" />
+    <None Include="Resources\back_one.png" />
+    <None Include="Resources\background.png" />
+    <None Include="Resources\Annotations\annotation_1to1.png" />
+    <None Include="Resources\Annotations\annotation_add.png" />
+    <None Include="Resources\Annotations\annotation_alert.png" />
+    <None Include="Resources\Annotations\annotation_as.png" />
+    <None Include="Resources\Annotations\annotation_blocked.png" />
+    <None Include="Resources\Annotations\annotation_check.png" />
+    <None Include="Resources\Annotations\annotation_clear.png" />
+    <None Include="Resources\Annotations\annotation_clear2.png" />
+    <None Include="Resources\Annotations\annotation_close.png" />
+    <None Include="Resources\Annotations\annotation_complete.png" />
+    <None Include="Resources\Annotations\annotation_create.png" />
+    <None Include="Resources\Annotations\annotation_delete.png" />
+    <None Include="Resources\Annotations\annotation_down.png" />
+    <None Include="Resources\Annotations\annotation_edit.png" />
+    <None Include="Resources\Annotations\annotation_error.png" />
+    <None Include="Resources\Annotations\annotation_exclude.png" />
+    <None Include="Resources\Annotations\annotation_export.png" />
+    <None Include="Resources\Annotations\annotation_find.png" />
+    <None Include="Resources\Annotations\annotation_flyout.png" />
+    <None Include="Resources\Annotations\annotation_grid.png" />
+    <None Include="Resources\Annotations\annotation_help.png" />
+    <None Include="Resources\Annotations\annotation_image.png" />
+    <None Include="Resources\Annotations\annotation_import.png" />
+    <None Include="Resources\Annotations\annotation_include.png" />
+    <None Include="Resources\Annotations\annotation_info.png" />
+    <None Include="Resources\Annotations\annotation_invisible.png" />
+    <None Include="Resources\Annotations\annotation_left.png" />
+    <None Include="Resources\Annotations\annotation_locked.png" />
+    <None Include="Resources\Annotations\annotation_monitor.png" />
+    <None Include="Resources\Annotations\annotation_new.png" />
+    <None Include="Resources\Annotations\annotation_not.png" />
+    <None Include="Resources\Annotations\annotation_open.png" />
+    <None Include="Resources\Annotations\annotation_paint.png" />
+    <None Include="Resources\Annotations\annotation_pause.png" />
+    <None Include="Resources\Annotations\annotation_play.png" />
+    <None Include="Resources\Annotations\annotation_playround.png" />
+    <None Include="Resources\Annotations\annotation_plusone.png" />
+    <None Include="Resources\Annotations\annotation_redo.png" />
+    <None Include="Resources\Annotations\annotation_refresh.png" />
+    <None Include="Resources\Annotations\annotation_remove.png" />
+    <None Include="Resources\Annotations\annotation_required.png" />
+    <None Include="Resources\Annotations\annotation_right.png" />
+    <None Include="Resources\Annotations\annotation_save.png" />
+    <None Include="Resources\Annotations\annotation_security_alert.png" />
+    <None Include="Resources\Annotations\annotation_security_bad.png" />
+    <None Include="Resources\Annotations\annotation_security_good.png" />
+    <None Include="Resources\Annotations\annotation_shortcut.png" />
+    <None Include="Resources\Annotations\annotation_sort_ascending.png" />
+    <None Include="Resources\Annotations\annotation_sort_descending.png" />
+    <None Include="Resources\Annotations\annotation_star.png" />
+    <None Include="Resources\Annotations\annotation_stop.png" />
+    <None Include="Resources\Annotations\annotation_trash.png" />
+    <None Include="Resources\Annotations\annotation_undo.png" />
+    <None Include="Resources\Annotations\annotation_up.png" />
+    <None Include="Resources\Annotations\annotation_vector.png" />
+    <None Include="Resources\Annotations\annotation_visible.png" />
+    <None Include="Resources\Annotations\annotation_warning.png" />
+    <Content Include="Resources\cancel.png" />
+    <None Include="Resources\candycane.png" />
+    <None Include="Resources\channel.png" />
+    <None Include="Resources\channel_small.png" />
+    <None Include="Resources\channels.png" />
+    <None Include="Resources\channels_selected.png" />
+    <None Include="Resources\channel_to_background.png" />
+    <None Include="Resources\CellSize\pixel_1.png" />
+    <None Include="Resources\CellSize\pixel_2.png" />
+    <None Include="Resources\CellSize\pixel_3.png" />
+    <None Include="Resources\CellSize\pixel_4.png" />
+    <None Include="Resources\CellSize\pixel_5.png" />
+    <None Include="Resources\CellSize\pixel_6.png" />
+    <None Include="Resources\CellSize\pixel_7.png" />
+    <None Include="Resources\CellSize\pixel_8.png" />
+    <None Include="Resources\CellSize\pixel_9.png" />
+    <None Include="Resources\CellSize\pixel_10.png" />
+    <Content Include="Resources\check.png" />
+    <None Include="Resources\clockwise.png" />
+    <None Include="Resources\clockwise_selected.png" />
+    <None Include="Resources\clearchannel.png" />
+    <Content Include="Resources\ColorBox.bmp" />
+    <Content Include="Resources\ColorDropdown.bmp" />
+    <Content Include="Resources\ColorGrid.bmp" />
+    <Content Include="Resources\ColorPanel.bmp" />
+    <Content Include="Resources\ColorPicker.bmp" />
+    <Content Include="Resources\ColorWheel.bmp" />
+    <None Include="Resources\crop_small.png" />
+    <None Include="Resources\crop_to_mask.png" />
+    <None Include="Resources\copy.png" />
+    <None Include="Resources\cut.png" />
+    <None Include="Resources\down.png" />
+    <None Include="Resources\down_small.png" />
+    <None Include="Resources\Cursors\arch_modifier.png" />
+    <None Include="Resources\Cursors\cross_base.png" />
+    <None Include="Resources\Cursors\cursor_grabbed.png" />
+    <None Include="Resources\Cursors\ellipse_modifier.png" />
+    <None Include="Resources\Cursors\fan_modifier.png" />
+    <None Include="Resources\Cursors\fill_modifier.png" />
+    <None Include="Resources\Cursors\freehand_modifier.png" />
+    <None Include="Resources\Cursors\icicles_modifier.png" />
+    <None Include="Resources\Cursors\lasso_modifier.png" />
+    <None Include="Resources\Cursors\line_modifier.png" />
+    <None Include="Resources\Cursors\mask_ellipse_modifier.png" />
+    <None Include="Resources\Cursors\mask_rectangle_modifier.png" />
+    <None Include="Resources\Cursors\mask_trim_modifier.png" />
+    <None Include="Resources\Cursors\mask_xor_modifier.png" />
+    <None Include="Resources\Cursors\minus_modifier.png" />
+    <None Include="Resources\Cursors\pan.png" />
+    <None Include="Resources\Cursors\plus_modifier.png" />
+    <None Include="Resources\Cursors\polygon_modifier.png" />
+    <None Include="Resources\Cursors\rectangle_modifier.png" />
+    <None Include="Resources\Cursors\singing_face_modifier.png" />
+    <None Include="Resources\Cursors\star_modifier.png" />
+    <None Include="Resources\Cursors\tree_modifier.png" />
+    <None Include="Resources\Dashes\dashstyle_dash.png" />
+    <None Include="Resources\Dashes\dashstyle_dashdot.png" />
+    <None Include="Resources\Dashes\dashstyle_dashdotdot.png" />
+    <None Include="Resources\Dashes\dashstyle_dot.png" />
+    <None Include="Resources\Dashes\dashstyle_solid.png" />
+    <Content Include="Resources\DropdownControl.bmp" />
+    <None Include="Resources\editText.png" />
+    <None Include="Resources\flipH.png" />
+    <None Include="Resources\flipH_selected.png" />
+    <None Include="Resources\flipV.png" />
+    <None Include="Resources\flipV_selected.png" />
+    <None Include="Resources\flyout.png" />
+    <None Include="Resources\font.png" />
+    <None Include="Resources\fontsize.png" />
+    <None Include="Resources\ghost.png" />
+    <None Include="Resources\exit.png" />
+    <None Include="Resources\fillMode_center.png" />
+    <None Include="Resources\fillMode_fill.png" />
+    <None Include="Resources\fillMode_fit.png" />
+    <None Include="Resources\fillMode_stretch.png" />
+    <None Include="Resources\fillMode_tile.png" />
+    <None Include="Resources\forward_one.png" />
+    <None Include="Resources\grid.png" />
+    <None Include="Resources\group.png" />
+    <Content Include="Resources\HSLSlider.bmp" />
+    <None Include="Resources\image.png" />
+    <None Include="Resources\image-import.png" />
+    <None Include="Resources\italic.png" />
+    <None Include="Resources\italic_selected.png" />
+    <None Include="Resources\layout_detail.png" />
+    <None Include="Resources\layout_detail_selected.png" />
+    <None Include="Resources\layout_simple.png" />
+    <None Include="Resources\layout_simple_selected.png" />
+    <None Include="Resources\left.png" />
+    <None Include="Resources\left_selected.png" />
+    <None Include="Resources\multichannel_arch.png" />
+    <None Include="Resources\multichannel_arch_selected.png" />
+    <None Include="Resources\multichannel_circle _selected.png" />
+    <None Include="Resources\multichannel_circle.png" />
+    <None Include="Resources\multichannel_fan.png" />
+    <None Include="Resources\multichannel_fan_selected.png" />
+    <None Include="Resources\multichannel_line _selected.png" />
+    <None Include="Resources\multichannel_line.png" />
+    <None Include="Resources\multichannel_lines_selected.png" />
+    <None Include="Resources\multichannel_star _selected.png" />
+    <None Include="Resources\multichannel_star.png" />
+    <None Include="Resources\multichannel_starcenter _selected.png" />
+    <None Include="Resources\multichannel_starcenter.png" />
+    <None Include="Resources\keyboard.png" />
+    <None Include="Resources\lattice.png" />
+    <None Include="Resources\left_small.png" />
+    <None Include="Resources\lock.png" />
+    <None Include="Resources\map.png" />
+    <None Include="Resources\newchannel.png" />
+    <None Include="Resources\newprofile.png" />
+    <None Include="Resources\newshuffle.png" />
+    <None Include="Resources\Icon Resources\preview.png" />
+    <None Include="Resources\Icon Resources\preview_32.png" />
+    <None Include="Resources\Icon Resources\preview_48.png" />
+    <None Include="Resources\Icon Resources\zapper16.png" />
+    <None Include="Resources\Icon Resources\zapper32.png" />
+    <None Include="Resources\Icon Resources\zapper48.png" />
+    <None Include="Resources\Image Stamps\candycane_5.png" />
+    <None Include="Resources\Image Stamps\candycane_10.png" />
+    <None Include="Resources\Image Stamps\candycane_20.png" />
+    <None Include="Resources\Image Stamps\candycane_30.png" />
+    <None Include="Resources\Image Stamps\candycane_100.png" />
+    <None Include="Resources\Image Stamps\ghost_5.gif" />
+    <None Include="Resources\Image Stamps\ghost_10.gif" />
+    <None Include="Resources\Image Stamps\ghost_20.gif" />
+    <None Include="Resources\Image Stamps\ghost_30.gif" />
+    <None Include="Resources\Image Stamps\jack_5.gif" />
+    <None Include="Resources\Image Stamps\jack_10.gif" />
+    <None Include="Resources\Image Stamps\jack_20.gif" />
+    <None Include="Resources\Image Stamps\jack_30.gif" />
+    <None Include="Resources\Image Stamps\snowflake_7.gif" />
+    <None Include="Resources\Image Stamps\snowflake_10.gif" />
+    <None Include="Resources\Image Stamps\snowflake_20.gif" />
+    <None Include="Resources\Image Stamps\snowflake_30.gif" />
+    <None Include="Resources\Image Stamps\snowman_5x6.png" />
+    <None Include="Resources\Image Stamps\snowman_7x11.png" />
+    <None Include="Resources\Image Stamps\snowman_9x17.png" />
+    <None Include="Resources\Image Stamps\snowman_11x24.png" />
+    <None Include="Resources\Image Stamps\tree_5.gif" />
+    <None Include="Resources\Image Stamps\tree_10.gif" />
+    <None Include="Resources\Image Stamps\tree_20.gif" />
+    <None Include="Resources\Image Stamps\tree_30.gif" />
+    <None Include="Resources\Mask\mask.png" />
+    <None Include="Resources\Mask\mask_additive.png" />
+    <None Include="Resources\Mask\mask_additive_selected.png" />
+    <None Include="Resources\Mask\mask_blocky.png" />
+    <None Include="Resources\Mask\mask_blocky_selected.png" />
+    <None Include="Resources\Mask\mask_expand.png" />
+    <None Include="Resources\Mask\mask_invert.png" />
+    <None Include="Resources\Mask\mask_load_from_disk.png" />
+    <None Include="Resources\Mask\mask_reduce.png" />
+    <None Include="Resources\Mask\mask_remove.png" />
+    <None Include="Resources\Mask\mask_save.png" />
+    <None Include="Resources\Mask\mask_select_all.png" />
+    <None Include="Resources\Mask\mask_selected.png" />
+    <None Include="Resources\Mask\mask_smooth.png" />
+    <None Include="Resources\Mask\mask_smooth_selected.png" />
+    <None Include="Resources\Mask\mask_subtractive.png" />
+    <None Include="Resources\Mask\mask_subtractive_selected.png" />
+    <None Include="Resources\Mask\mask_trim.png" />
+    <None Include="Resources\Mask\mask_trim_selected.png" />
+    <None Include="Resources\Mask\mask_xor.png" />
+    <None Include="Resources\Mask\mask_xor_selected.png" />
+    <None Include="Resources\Mask\show_mask_marquee.png" />
+    <None Include="Resources\Mask\show_mask_marquee_selected.png" />
+    <None Include="Resources\Mask\show_mask_overlay.png" />
+    <None Include="Resources\Mask\show_mask_overlay_selected.png" />
+    <Content Include="Resources\not.png" />
+    <Content Include="Resources\not_small.png" />
+    <None Include="Resources\open.png" />
+    <None Include="Resources\palette.png" />
+    <None Include="Resources\paste.png" />
+    <Content Include="Resources\pause.png" />
+    <Content Include="Resources\play.png" />
+    <Content Include="Resources\play_from_point.png" />
+    <None Include="Resources\pumpkin.png" />
+    <None Include="Resources\profile.png" />
+    <None Include="Resources\properties.png" />
+    <None Include="Resources\recent.png" />
+    <Content Include="Resources\record.png" />
+    <None Include="Resources\right.png" />
+    <None Include="Resources\right_selected.png" />
+    <None Include="Resources\rotate_anticlockwise.png" />
+    <None Include="Resources\rotate_anticlockwise_selected.png" />
+    <None Include="Resources\rotate_clockwise.png" />
+    <None Include="Resources\rotate_clockwise_selected.png" />
+    <None Include="Resources\round_nib.png" />
+    <None Include="Resources\round_nib_selected.png" />
+    <None Include="Resources\rounded_corner.png" />
+    <None Include="Resources\rounded_corner_selected.png" />
+    <None Include="Resources\redo.png" />
+    <None Include="Resources\rename.png" />
+    <None Include="Resources\reorder.png" />
+    <None Include="Resources\resize_lattice.png" />
+    <None Include="Resources\right_small.png" />
+    <None Include="Resources\ruler.png" />
+    <None Include="Resources\sample_swatch.png" />
+    <None Include="Resources\save.png" />
+    <Content Include="Resources\SelectColorDialog.bmp" />
+    <None Include="Resources\snowflake.png" />
+    <None Include="Resources\snowman.png" />
+    <None Include="Resources\solidstar.png" />
+    <None Include="Resources\solidstar_selected.png" />
+    <None Include="Resources\square_corner.png" />
+    <None Include="Resources\square_corner_selected.png" />
+    <None Include="Resources\square_nib.png" />
+    <None Include="Resources\square_nib_selected.png" />
+    <None Include="Resources\star.png" />
+    <None Include="Resources\star_selected.png" />
+    <None Include="Resources\settings.png" />
+    <None Include="Resources\shuffle.png" />
+    <None Include="Resources\Splash\PreviewSplash.png" />
+    <None Include="Resources\Splash\ProfileEditorSplash.png" />
+    <Content Include="Resources\stop.png" />
+    <None Include="Resources\tree.png" />
+    <None Include="Resources\underline.png" />
+    <None Include="Resources\underline_selected.png" />
+    <None Include="Resources\undefined.png" />
+    <None Include="Resources\to_back.png" />
+    <None Include="Resources\to_bottom.png" />
+    <None Include="Resources\to_front.png" />
+    <None Include="Resources\to_top.png" />
+    <None Include="Resources\toggle_guides.png" />
+    <None Include="Resources\transparency.png" />
+    <None Include="Resources\undo.png" />
+    <None Include="Resources\ungroup.png" />
+    <None Include="Resources\up.png" />
+    <None Include="Resources\up_small.png" />
+    <None Include="Resources\update.png" />
+    <None Include="Resources\ToolBox\crop.png" />
+    <None Include="Resources\ToolBox\crop_selected.png" />
+    <None Include="Resources\ToolBox\ellipse.png" />
+    <None Include="Resources\ToolBox\ellipse_selected.png" />
+    <None Include="Resources\ToolBox\eraser.png" />
+    <None Include="Resources\ToolBox\eraser_selected.png" />
+    <None Include="Resources\ToolBox\fill.png" />
+    <None Include="Resources\ToolBox\fill_selected.png" />
+    <None Include="Resources\ToolBox\icicles.png" />
+    <None Include="Resources\ToolBox\icicles_selected.png" />
+    <None Include="Resources\ToolBox\imagestamp.png" />
+    <None Include="Resources\ToolBox\imagestamp_selected.png" />
+    <None Include="Resources\ToolBox\line.png" />
+    <None Include="Resources\ToolBox\line_selected.png" />
+    <None Include="Resources\ToolBox\mask_ellipse.png" />
+    <None Include="Resources\ToolBox\mask_ellipse_selected.png" />
+    <None Include="Resources\ToolBox\mask_freehand.png" />
+    <None Include="Resources\ToolBox\mask_freehand_selected.png" />
+    <None Include="Resources\ToolBox\mask_lasso.png" />
+    <None Include="Resources\ToolBox\mask_lasso_selected.png" />
+    <None Include="Resources\ToolBox\mask_paint.png" />
+    <None Include="Resources\ToolBox\mask_paint_selected.png" />
+    <None Include="Resources\ToolBox\mask_rectangle.png" />
+    <None Include="Resources\ToolBox\mask_rectangle_selected.png" />
+    <None Include="Resources\ToolBox\mask_wand.png" />
+    <None Include="Resources\ToolBox\mask_wand_selected.png" />
+    <None Include="Resources\ToolBox\megatree.png" />
+    <None Include="Resources\ToolBox\megatree_selected.png" />
+    <None Include="Resources\ToolBox\move_channel.png" />
+    <None Include="Resources\ToolBox\move_channel_selected.png" />
+    <None Include="Resources\ToolBox\multichannel_lines.png" />
+    <None Include="Resources\ToolBox\multichannel_lines_selected.png" />
+    <None Include="Resources\ToolBox\paintbrush.png" />
+    <None Include="Resources\ToolBox\paintbrush_selected.png" />
+    <None Include="Resources\ToolBox\polygon.png" />
+    <None Include="Resources\ToolBox\polygon_selected.png" />
+    <None Include="Resources\ToolBox\rectangle.png" />
+    <None Include="Resources\ToolBox\rectangle_selected.png" />
+    <None Include="Resources\ToolBox\select.png" />
+    <None Include="Resources\ToolBox\select_selected.png" />
+    <None Include="Resources\ToolBox\singing_face.png" />
+    <None Include="Resources\ToolBox\singing_face_selected.png" />
+    <None Include="Resources\ToolBox\spray.png" />
+    <None Include="Resources\ToolBox\spray_selected.png" />
+    <None Include="Resources\ToolBox\text.png" />
+    <None Include="Resources\ToolBox\text_selected.png" />
+    <None Include="Resources\ToolBox\undefined.png" />
+    <None Include="Resources\ToolBox\zoom.png" />
+    <None Include="Resources\ToolBox\zoom_selected.png" />
+    <None Include="Resources\Style Images\flake1.png" />
+    <None Include="Resources\Style Images\flake2.png" />
+    <None Include="Resources\Style Images\flake3.png" />
+    <None Include="Resources\Style Images\flake4.png" />
+    <Content Include="Resources\verb_not.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\Resources\Annotations\Masks\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
