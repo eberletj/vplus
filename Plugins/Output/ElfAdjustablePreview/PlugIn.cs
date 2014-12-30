@@ -151,11 +151,11 @@ namespace ElfAdjustablePreview {
                 var rawChannelList =
                     _channels.Select(
                         vChannel =>
-                            new ElfRawChannel
-                            {Name = vChannel.Name, SequencerColor = vChannel.Color, Enabled = vChannel.Enabled, ID = vChannel.OutputChannel}).ToList();
+                            new ElfRawChannel { Name = vChannel.Name, SequencerColor = vChannel.Color, Enabled = vChannel.Enabled, ID = vChannel.OutputChannel }).ToList();
 
                 var loadingProfile = new BaseProfile(typeof (Profiles.VixenPlus));
                 loadingProfile.Load(_setupNode, rawChannelList);
+                //loadingProfile.Load(_setupNode, _channels);
                 loadingProfile.Name = _executable.Name;
                 loadingProfile.Filename = _profileFileName;
                 myWorkshop.ProfileController.Add(loadingProfile);

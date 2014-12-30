@@ -169,7 +169,11 @@ namespace ElfAdjustablePreview.Core.Controllers
             {
                 string ID = CreateMenuItemID(menuItem, rootID);
                 if (ID.Length > 0)
-                    _defaultGestures.Add(ID, new MultiKeyGesture(ID, menuItem.MultiGestureKey1, menuItem.MultiGestureKey2, menuItem));
+                    if (!DefaultGestures.ContainsKey(ID))
+                    {
+                        _defaultGestures.Add(ID,
+                            new MultiKeyGesture(ID, menuItem.MultiGestureKey1, menuItem.MultiGestureKey2, menuItem));
+                    }
             }
         }
 
@@ -184,7 +188,11 @@ namespace ElfAdjustablePreview.Core.Controllers
                 return;
             string ID = CreateButtonID(button, rootID);
             if (ID.Length > 0)
-                _defaultGestures.Add(ID, new MultiKeyGesture(ID, button.MultiGestureKey1, button.MultiGestureKey2, button));
+                if (!_defaultGestures.ContainsKey(ID))
+                {
+                    _defaultGestures.Add(ID,
+                        new MultiKeyGesture(ID, button.MultiGestureKey1, button.MultiGestureKey2, button));
+                }
 
             if (button is PlugInToolStripButton)
             {

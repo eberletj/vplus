@@ -14,7 +14,7 @@ namespace ElfAdjustablePreview {
         private readonly PlaybackProfile _profile;
         private readonly Settings _settings = Settings.Instance;
         private Size _borderSize;
-        private float _deltaFPSTime;
+        private float _deltaFpsTime;
         private DateTime _lastCheckedTime;
 
         #endregion [ Private Variables ]
@@ -68,15 +68,15 @@ namespace ElfAdjustablePreview {
             var elapsedTime = DateTime.Now.Subtract(_lastCheckedTime);
             _lastCheckedTime = DateTime.Now;
             var elapsed = (float) elapsedTime.TotalSeconds;
-            _deltaFPSTime += elapsed;
+            _deltaFpsTime += elapsed;
 
-            if (!(_deltaFPSTime > 1)) {
+            if (!(_deltaFpsTime > 1)) {
                 return;
             }
 
             var fps2 = 1 / elapsed;
             lblFrameRate.Text = string.Format("FPS: {0:N1}", fps2);
-            _deltaFPSTime -= 1;
+            _deltaFpsTime -= 1;
         }
 
         #endregion [ Methods ]
